@@ -345,7 +345,7 @@ function favReducer(state, action) {
     case "HYDRATE": return {...state, ...action.payload};
     case "ADD_COLOR": {
       if (state.colors.find(c=>c.id===action.item.id)) return state;
-      const colors = [action.item, ...state.colors];
+      const colors = [action.item, ...state.colors].slice(0,10);
       return {...state, colors, selColorId: state.selColorId || action.item.id};
     }
     case "REMOVE_COLOR": {
@@ -355,7 +355,7 @@ function favReducer(state, action) {
     case "SELECT_COLOR": return {...state, selColorId:action.id};
     case "ADD_FONT": {
       if (state.fonts.find(f=>f.id===action.item.id)) return state;
-      const fonts = [action.item, ...state.fonts];
+      const fonts = [action.item, ...state.fonts].slice(0,10);
       return {...state, fonts, selFontId: state.selFontId || action.item.id};
     }
     case "REMOVE_FONT": {
