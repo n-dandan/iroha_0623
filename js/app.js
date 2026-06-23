@@ -264,6 +264,10 @@ function FontResult({fonts, fontMode, onFavAdd, alreadyFav, showToast}) {
               style={{fontFamily:fonts.body.family, fontWeight:fonts.body.weight, fontSize:"1.4rem"}}>
               {previewJp}
             </p>
+            <p className="font-preview-sub"
+              style={{fontFamily:fonts.body.family, fontWeight:fonts.body.weight}}>
+              {previewEn}
+            </p>
             <p className="font-preview-body"
               style={{fontFamily:fonts.body.family, fontWeight:fonts.body.weight}}>
               {previewBody}

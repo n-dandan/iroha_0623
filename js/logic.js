@@ -186,6 +186,7 @@ function buildSystemPrompt(fontCatalog, purpose) {
     "【フォント】",
     "フォントは必ず次のカタログの family からのみ選びます（存在しない名前を作らない）。",
     "日本語の本文・見出しには subset が jp のフォントを選びます。",
+    "bilingual（日英の組み合わせ）の場合は、heading に subset が latin のフォントを、body に subset が jp のフォントを選んでください。",
     `カタログ: ${JSON.stringify(fontCatalog)}`,
     "",
     "【指示の優先順位】",
@@ -292,7 +293,7 @@ async function generate(input) {
     const palette = guardPalette(p.palette);
     const needJp = input.langMode === "jp_only";
     const {font: hFont, weight: hW} = resolveFont(p.fontPairing.heading.family, p.fontPairing.heading.weight, needJp);
-    let {font: bFont, weight: bW} = resolveFont(p.fontPairing.body.family, p.fontPairing.body.weight, true);
+    let {font: bFont, weight: bW} = resolveFont(p.fontPairing.body.family, p.fontPairing.body.weight, needJp);
     if (input.fontMode === "single") { bFont = hFont; bW = hW; }
     loadFont(hFont.family, hFont.weights);
     if (bFont.family !== hFont.family) loadFont(bFont.family, bFont.weights);
@@ -316,8 +317,8 @@ function buildDesignPrompt(color, font, purpose) {
   return [
     `次の配色とフォントで${kind}のデザイン案を作成してください。`,
     `配色: ${hexes}`,
-    `見出しフォント: ${font.heading.family} (${font.heading.weight})`,
-    `本文フォント: ${font.body.family} (${font.body.weight})`,
+    `見出しフォント（${font.heading.subset==="jp"?"和文":"欧文"}）: ${font.heading.family} (${font.heading.weight})`,
+    `本文フォント（${font.body.subset==="jp"?"和文":"欧文"}）: ${font.body.family} (${font.body.weight})`,
     `メインカラーを主役、アクセントをポイント、背景色を地色、文字色をテキストに使ってください。`,
   ].join("\n");
 }
