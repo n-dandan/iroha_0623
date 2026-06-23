@@ -1,0 +1,8 @@
+# APIキー管理ファイル（絶対にコミットしない）
+js/config.js
+
+# OS・エディタ生成ファイル
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
