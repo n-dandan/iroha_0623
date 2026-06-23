@@ -481,7 +481,6 @@ function App() {
           <div className="logo-dot" />
         </div>
         <span className="header-tagline">AI 配色 & タイポジェネレーター</span>
-        <span className="header-badge">Phase 1</span>
       </header>
 
       {/* ── メインレイアウト ── */}

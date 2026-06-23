@@ -1,6 +1,9 @@
 # APIキー管理ファイル（絶対にコミットしない）
 js/config.js
 
+# 仕様書（課題提出には含めない）
+spec_0622.md
+
 # OS・エディタ生成ファイル
 .DS_Store
 Thumbs.db
